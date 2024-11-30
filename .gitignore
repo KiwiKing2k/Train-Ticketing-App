@@ -1,0 +1,11 @@
+# Ignore CLion configuration files
+.idea/
+*.iml
+
+# Ignore build directories
+cmake-build-*/
+
+# Ignore other common files
+*.log
+*.tmp
+*.swp
