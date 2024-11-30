@@ -10,4 +10,7 @@ add_executable(Train_Ticketing_App
         Wagon.cpp
         Wagon.h
         TrainRide.cpp
-        TrainRide.h)
+        TrainRide.h
+        Utils/Utils.cpp
+        Utils/Utils.h
+)
