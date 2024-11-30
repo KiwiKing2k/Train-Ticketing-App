@@ -1,6 +1,6 @@
 #include "Wagon.h"
 
-Wagon::Wagon() {}
+Wagon::Wagon() = default;
 
 void Wagon::WagonAssigner(int class_type)
 {
