@@ -2,7 +2,7 @@
 #define WAGON_H
 
 #include <iostream>
-#include <string>
+
 using namespace std;
 
 typedef struct Seat
