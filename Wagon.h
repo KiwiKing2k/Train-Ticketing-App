@@ -14,10 +14,10 @@ typedef struct Seat
 class Wagon
 {
 private:
-    int class_type; // 1 or 2
+    int class_type{}; // 1 or 2
     const int max_capacity = 80; // standard for CFR
-    Seat seats[80];
-    int reserved_seats;
+    Seat seats[80]{};
+    int reserved_seats{};
 
 public:
     Wagon();
