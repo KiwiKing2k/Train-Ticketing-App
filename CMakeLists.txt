@@ -7,12 +7,12 @@ include_directories(.)
 
 add_executable(Train_Ticketing_App
     main.cpp
-        Wagon.cpp
-        Wagon.h
-        TrainRide.cpp
-        TrainRide.h
         Utils/Utils.cpp
         Utils/Utils.h
         Admin/Operator.cpp
         Admin/Operator.h
+        "Train Utils/Wagon.cpp"
+        "Train Utils/Wagon.h"
+        "Train Utils/TrainRide.cpp"
+        "Train Utils/TrainRide.h"
 )
