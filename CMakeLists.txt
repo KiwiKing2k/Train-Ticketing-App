@@ -15,4 +15,6 @@ add_executable(Train_Ticketing_App
         "Train Utils/Wagon.h"
         "Train Utils/TrainRide.cpp"
         "Train Utils/TrainRide.h"
+        Users/User.cpp
+        Users/User.h
 )
