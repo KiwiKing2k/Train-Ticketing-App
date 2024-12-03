@@ -3,13 +3,16 @@
 
 
 bool is_valid_date_format(const std::string& date) {
-    std::regex pattern("\\d{2}[\\.-_ ]\\d{2}[\\.-_ ]\\d{4}");
+    std::regex pattern("\\d{1,2}[\\./\\-_ ]\\d{2}[\\./\\-_ ]\\d{4}");
     if (!std::regex_match(date, pattern)) {
         return false;
     }
 
     int day, month, year;
-    char sep = date.find('-') != std::string::npos ? '-' : date.find('_') != std::string::npos ? '_' : date.find('.') ? '.' : ' ';
+    char sep = date.find('-') != std::string::npos ? '-' :
+               date.find('_') != std::string::npos ? '_' :
+               date.find('.') != std::string::npos ? '.' :
+               date.find('/') != std::string::npos ? '/' : ' ';
     sscanf(date.c_str(), "%d%c%d%c%d", &day, &sep, &month, &sep, &year);
 
     if (year < 2025) {
@@ -19,14 +22,15 @@ bool is_valid_date_format(const std::string& date) {
     return true;
 }
 
-bool is_valid_year(const std::string& date)
-{
+bool is_valid_year(const std::string& date) {
     int day, month, year;
-    char sep = date.find('-') != std::string::npos ? '-' : date.find('_') != std::string::npos ? '_' : date.find('.') ? '.' : ' ';
+    char sep = date.find('-') != std::string::npos ? '-' :
+               date.find('_') != std::string::npos ? '_' :
+               date.find('.') != std::string::npos ? '.' :
+               date.find('/') != std::string::npos ? '/' : ' ';
     sscanf(date.c_str(), "%d%c%d%c%d", &day, &sep, &month, &sep, &year);
 
-    if (year < 2025)
-    {
+    if (year < 2025) {
         return false;
     }
     return true;
