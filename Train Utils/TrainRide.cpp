@@ -94,3 +94,26 @@ int TrainRide::reserve_specific_seat(int wagon_number, int seat_number)
     }
     return 1;
 }
+
+void TrainRide::find_reserved_seats()
+{
+    string file_name("../Data/Trains/" + this->name + ".csv");
+    ifstream file(file_name);
+    if (!file.is_open())
+    {
+        throw std::invalid_argument("File not found.");
+    }
+    string line;
+    while (getline(file, line))
+    {
+        if (line.empty())
+        {
+            continue;
+        }
+        int wagon_number, seat_number;
+        wagon_number = stoi(line.substr(0, line.find(',')));
+        line = line.substr(line.find(',') + 1);
+        seat_number = stoi(line.substr(0, line.find(',')));
+        reserve_specific_seat(wagon_number, seat_number);
+    }
+}

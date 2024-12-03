@@ -30,6 +30,7 @@ public:
     ~TrainRide();
     SeatInfo reserve_any_seat(int class_type);
     int reserve_specific_seat(int wagon_number, int seat_number);
+    void find_reserved_seats();
 };
 
 #endif // TRAINRIDE_H
