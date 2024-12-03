@@ -13,10 +13,15 @@ TrainRide::TrainRide(string name, string date, string time, string destination, 
     }
 
     //time check
-    if (is_valid_year(date) == false)
+    try
     {
-        throw std::invalid_argument("This program is designed for usage after 01.01.2025");
+        is_valid_time(time);
+    }catch (const std::invalid_argument& e)
+    {
+        delete[] wagons;
+        throw;
     }
+
 
     //City name check
     if (is_valid_city_name(destination) == false )
