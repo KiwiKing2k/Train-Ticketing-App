@@ -13,4 +13,6 @@ add_executable(Train_Ticketing_App
         TrainRide.h
         Utils/Utils.cpp
         Utils/Utils.h
+        Admin/Operator.cpp
+        Admin/Operator.h
 )
