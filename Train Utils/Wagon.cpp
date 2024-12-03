@@ -23,7 +23,7 @@ int Wagon::reserve_any_seat()
             {
                 seats[i].reserved = true;
                 reserved_seats++;
-                return i+1;
+                return i;
             }
         }
     }
