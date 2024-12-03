@@ -19,11 +19,11 @@ int Wagon::reserve_any_seat()
     {
         for (int i = 0; i < max_capacity; i++)
         {
-            if (!seats[i].reserved)
+            if (seats[i].reserved == false)
             {
                 seats[i].reserved = true;
                 reserved_seats++;
-                return seats[i].seat_number;
+                return i+1;
             }
         }
     }

@@ -10,7 +10,7 @@ bool is_valid_date_format(const std::string& date) {
     return true;
 }
 
-bool is_valid_time(const std::string& date) {
+bool is_valid_date(const std::string& date) {
     int day, month, year;
     char sep = date.find('-') != std::string::npos ? '-' :
                date.find('_') != std::string::npos ? '_' :
@@ -43,6 +43,14 @@ bool is_valid_time(const std::string& date) {
         }
     }
 
+    return true;
+}
+
+bool is_valid_time(const std::string& time) {
+    std::regex time_pattern("([01]?[0-9]|2[0-3]):[0-5][0-9]");
+    if (!std::regex_match(time, time_pattern)) {
+        throw std::invalid_argument("Invalid time format.");
+    }
     return true;
 }
 

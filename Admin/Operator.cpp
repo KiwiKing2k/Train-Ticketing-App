@@ -58,7 +58,6 @@ void Operator::add_ride()
     getline(cin, start);
     cout << "Enter end city:" << endl;
     string end;
-    cin.ignore();
     getline(cin, end);
     cout << "Enter number of first class wagons:" << endl;
     int first_class_wagons;
@@ -69,12 +68,16 @@ void Operator::add_ride()
 
     TrainRide ride(name, date, time, start, end, first_class_wagons, second_class_wagons);
 
+
     ofstream file("../Data/rides.txt", ios::app);
     if (!file.is_open())
     {
         throw invalid_argument("File not found");
     }
-    file << name << "," << date << "," << time << "," << start << "," << end << "," << first_class_wagons << "," << second_class_wagons << endl;
+    file << name << "," << date << "," << time << "," << start << "," << end << "," << first_class_wagons << "," << second_class_wagons <<
+        endl;
+    string file_name = "../Data/Trains/" + name + ".csv";
+    ofstream file2(file_name);
 }
 
 void Operator::remove_ride()
@@ -116,5 +119,15 @@ void Operator::remove_ride()
     for (auto& l : lines)
     {
         file2 << l << endl;
+    }
+    file2.close();
+    string file_name = "../Data/Trains/" + name + ".txt";
+    try
+    {
+        remove(file_name.c_str());
+    }
+    catch (const std::exception& e)
+    {
+        cout << e.what() << endl;
     }
 }

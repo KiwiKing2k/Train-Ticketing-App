@@ -7,6 +7,12 @@
 #include "Utils/Utils.h"
 using namespace std;
 
+typedef struct SeatInfo
+{
+    int seat_number;
+    int wagon_number;
+};
+
 class TrainRide
 {
 private:
@@ -22,7 +28,8 @@ private:
 public:
     TrainRide(string name, string date, string time, string destination, string origin, int first_class_wagons, int second_class_wagons);
     ~TrainRide();
-    int reserve_any_seat(int class_type);
+    SeatInfo reserve_any_seat(int class_type);
+    int reserve_specific_seat(int wagon_number, int seat_number);
 };
 
 #endif // TRAINRIDE_H
