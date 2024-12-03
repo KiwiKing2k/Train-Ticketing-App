@@ -1,5 +1,3 @@
 IR1932,01-07-2025,06:30,Mangalia,Constanta,1,4
-IR1581,01-07-2025,08:00,Constanța,Bucuresti,1,10
-IR1635,01-07-2025,10:00,Bucuresti,Brasov,1,7
-IR1636,01-07-2025,14:00,Brasov,Bucuresti,1,7
-IR1582,01-07-2025,18:00,Bucuresti,Constanta,1,10
+IR1581,01-07-2025,08:00,Constanta,Bucuresti,1,10
+
