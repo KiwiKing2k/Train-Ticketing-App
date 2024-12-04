@@ -71,7 +71,7 @@ SeatInfo TrainRide::reserve_any_seat(int class_type)
     }
     for (int i = 0; i < wagons_nr; i++)
     {
-        if (wagons[i].class_type == class_type)
+        if (wagons[i].get_class_type() == class_type)
         {
             if (wagons[i].reserve_any_seat() != -1)
             {
