@@ -67,3 +67,8 @@ void Wagon::see_reserved_seats()
     }
     cout << endl;
 }
+
+int Wagon::get_class_type()
+{
+    return class_type;
+}

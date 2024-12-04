@@ -26,8 +26,7 @@ public:
     int reserve_seat(int seat_number);
     void see_free_seats();
     void see_reserved_seats();
-
-    friend class TrainRide;
+    int get_class_type();
 };
 
 #endif // WAGON_H
