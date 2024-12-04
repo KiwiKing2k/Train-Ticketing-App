@@ -89,24 +89,27 @@ int main()
         cin >> choice1;
         if (choice1 == 1) //new user
         {
-            User user("", "");
-            try
+            int continue_operation = 1;
+            while (continue_operation)
             {
-                user.authentification(secret_password);
-            }
-            catch (const std::invalid_argument& e)
-            {
-                cout << e.what() << endl;
-                cout << "Please try again" << endl;
-                cout << "Enter 1 to continue or 0 to exit" << endl;
-                int continue_operation;
-                cin >> continue_operation;
-                if (!continue_operation)
+                User user("", "");
+                try
                 {
-                    return 0;
+                    user.authentification(secret_password);
+                    continue_operation = 0;
+                }
+                catch (const std::invalid_argument& e)
+                {
+                    cout << e.what() << endl;
+                    cout << "Please try again" << endl;
+                    cout << "Enter 1 to continue or 0 to exit" << endl;
+                    cin >> continue_operation;
+                    if (!continue_operation)
+                    {
+                        return 0;
+                    }
                 }
             }
-
             cout << "User created" << endl;
         }
 
