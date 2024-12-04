@@ -193,6 +193,10 @@ TrainRide User::search_ride_by_name(string train_name)
 
 int User::buy_ticket(string train_name, int class_type)
 {
+    if (this->authenticated == false)
+    {
+        throw invalid_argument("Not authenticated");
+    }
     TrainRide found_ride = search_ride_by_name(train_name);
     found_ride.find_reserved_seats();
     SeatInfo seat = found_ride.reserve_any_seat(class_type);
