@@ -17,4 +17,6 @@ add_executable(Train_Ticketing_App
         "Train Utils/TrainRide.h"
         Users/User.cpp
         Users/User.h
+        Encryption/Encryption.cpp
+        Encryption/Encryption.h
 )
