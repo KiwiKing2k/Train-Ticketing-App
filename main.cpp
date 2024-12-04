@@ -4,11 +4,14 @@
 #include <vector>
 #include "Admin/Operator.h"
 #include "Users/User.h"
+#include "Encryption/Encryption.h""
+#include <algorithm>
 using namespace std;
 
 
 int main()
 {
+    string secret_password = "ILOVEC";
     cout << "Welcome to the TrainRide application " << endl;
 
     bool logged_in = false;
@@ -27,11 +30,11 @@ int main()
                 cout << "Enter name:" << endl;
                 string name;
                 cin >> name;
-                cout << "Enter password:" << endl;
+                cout << "Enter password (at least 6 characters):" << endl;
                 string password;
                 cin >> password;
                 Operator smooth_operator(name, password);
-                smooth_operator.login(name, password);
+                smooth_operator.login(name, password, secret_password);
                 cout << "Logged in" << endl;
                 logged_in = true;
 
@@ -89,7 +92,7 @@ int main()
             User user("", "");
             try
             {
-                user.authentification();
+                user.authentification(secret_password);
             }
             catch (const std::invalid_argument& e)
             {
@@ -120,7 +123,7 @@ int main()
                 string password;
                 cin >> password;
                 User user(name, password);
-                user.login(name, password);
+                user.login(name, password, secret_password);
                 cout << "Logged in" << endl;
                 logged_in = true;
 
