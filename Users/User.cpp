@@ -61,6 +61,15 @@ int User::authentification(string key)
     cout << "Enter password:" << endl;
     string password;
     cin >> password;
+    try
+    {
+        get_password_security_level(password);
+    }
+    catch (const std::invalid_argument& e)
+    {
+        throw;
+    }
+
     this->password = password;
     ifstream file_read("../Data/user_login.txt");
     if (!file_read.is_open())
@@ -83,7 +92,7 @@ int User::authentification(string key)
         throw invalid_argument("File not found");
     }
     key = generateKey(password, key);
-    file << name <<","<< cipherText(password,key) << endl;
+    file << name << "," << cipherText(password, key) << endl;
     file.close();
 
     return 1;
