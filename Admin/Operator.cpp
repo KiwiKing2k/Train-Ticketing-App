@@ -6,8 +6,12 @@ Operator::Operator(string username, string password)
     this->password = password;
 }
 
-int Operator::login(string username, string password)
+int Operator::login(string username, string password, string secret_password)
 {
+    if (any_of(password.begin(), password.end(), ::islower))
+        transform(password.begin(), password.end(), password.begin(),
+                  ::toupper);//convert password to uppercase
+    string key = generateKey(password, secret_password);
     ifstream file("../Data/op_login.txt");
     if (!file.is_open())
     {
@@ -19,7 +23,11 @@ int Operator::login(string username, string password)
     {
         credentials cred;
         cred.username = line.substr(0, line.find(','));
-        cred.password = line.substr(line.find(',') + 1);
+        string encrypted_passwd = line.substr(line.find(',') + 1);
+        cred.password = originalText(encrypted_passwd, key);
+        if (any_of(cred.password.begin(), cred.password.end(), ::islower))
+            transform(cred.password.begin(), cred.password.end(), cred.password.begin(),
+                      ::toupper);//convert password to uppercase
         admin_cred.push_back(cred);
     }
     file.close();

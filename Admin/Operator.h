@@ -6,6 +6,8 @@
 #include <vector>
 #include <fstream>
 #include "Train Utils\TrainRide.h"
+#include "Encryption/Encryption.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -24,7 +26,7 @@ private:
 
 public:
     Operator(string username, string password);
-    int login(string username, string password);
+    int login(string username, string password, string secret_password);
     void add_ride();
     void remove_ride();
 };
