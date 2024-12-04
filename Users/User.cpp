@@ -13,8 +13,11 @@ User::User(string username, string password)
     this->password = password;
 }
 
-int User::login(string username, string password)
+int User::login(string username, string password, string secret_password)
 {
+    if (any_of(password.begin(), password.end(), ::islower))
+        transform(password.begin(), password.end(), password.begin(),
+                  ::toupper); //convert password to uppercase
     ifstream file("../Data/user_login.txt");
     if (!file.is_open())
     {
@@ -26,7 +29,12 @@ int User::login(string username, string password)
     {
         credentials cred;
         cred.username = line.substr(0, line.find(','));
-        cred.password = line.substr(line.find(',') + 1);
+        string encrypted_password = line.substr(line.find(',') + 1);
+        string key = generateKey(password, secret_password);
+        cred.password = originalText(encrypted_password, key);
+        if (any_of(cred.password.begin(), cred.password.end(), ::islower))
+            transform(cred.password.begin(), cred.password.end(), cred.password.begin(),
+                      ::toupper); //convert password to uppercase
         user_cred.push_back(cred);
     }
     file.close();
@@ -44,7 +52,7 @@ int User::login(string username, string password)
     }
 }
 
-int User::authentification()
+int User::authentification(string key)
 {
     cout << "Enter name:" << endl;
     string name;
@@ -74,7 +82,8 @@ int User::authentification()
     {
         throw invalid_argument("File not found");
     }
-    file << name << "," << password << endl;
+    key = generateKey(password, key);
+    file << name <<","<< cipherText(password,key) << endl;
     file.close();
 
     return 1;
