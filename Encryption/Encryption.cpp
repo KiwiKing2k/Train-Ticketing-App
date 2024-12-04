@@ -40,3 +40,39 @@ string originalText(string cipher_text, string key) {
     }
     return orig_text;
 }
+
+int get_password_security_level(string password) {
+    /// 0 weak, 1 ok , 2 good
+
+    bool has_upper = false, has_lower = false, has_digit = false, has_punct = false;
+    for (char c : password) {
+        if (isupper(c)) {
+            has_upper = true;
+        }
+        if (islower(c)) {
+            has_lower = true;
+        }
+        if (isdigit(c)) {
+            has_digit = true;
+        }
+        if (ispunct(c)) {
+            has_punct = true;
+        }
+    }
+    int security_level = 0;
+    (has_lower)? security_level++ : security_level;
+    (has_upper)? security_level++ : security_level;
+    (has_digit)? security_level++ : security_level;
+    (has_punct)? security_level++ : security_level;
+    (password.length() >= 8)? security_level++ : security_level;
+    if (security_level == 5) {
+        cout << "Password is good" << endl;
+        return 2;
+    }
+    if (security_level >= 3) {
+        cout << "Password is ok" << endl;
+        return 1;
+    }
+    throw invalid_argument("Password is weak");
+    return 0;
+}
